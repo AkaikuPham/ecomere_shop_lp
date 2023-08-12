@@ -21,17 +21,17 @@ app.use(helmet())
 
 // Truyen tai du lieu den client se gon nhe hon rat nhieu lan
 app.use(conpression())
+app.use(express.json())
+app.use(express.urlencoded({
+  extended: true
+}))
 
 // init db
 require('./dbs/init.mongodb')
 // const { checkOverLoad } = require('./helpers/check.connect')
 // checkOverLoad()
 // init routes
-app.get('/', (req, res, next) => {
-  return res.status(200).json({
-    message: 'Welcome FanTips'
-  })
-})
+app.use('', require('./routes'))
 
 // handling error
 
